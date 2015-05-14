@@ -4,7 +4,7 @@
 #
 # Starts a Cassandra instance constituting a one node cluster. 
 
-FROM argus/cassandra:base
+FROM argussecurity/cassandra:base
 
 USER root
 
