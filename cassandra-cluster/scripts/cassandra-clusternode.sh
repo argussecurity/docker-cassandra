@@ -14,10 +14,10 @@ fi
 
 
 # Dunno why zeroes here
-sed -i -e "s/^rpc_address.*/rpc_address: $IP/" $CASSANDRA_CONFIG/cassandra.yaml
+sed -i -e "s/^rpc_address.*/rpc_address: ${LISTEN_ADDRESS:-$(echo $IP)}/" $CASSANDRA_CONFIG/cassandra.yaml
 
 # Listen on IP:port of the container
-sed -i -e "s/^listen_address.*/listen_address: $IP/" $CASSANDRA_CONFIG/cassandra.yaml
+sed -i -e "s/^listen_address.*/listen_address: ${LISTEN_ADDRESS:-$(echo $IP)}/" $CASSANDRA_CONFIG/cassandra.yaml
 
 # Configure Cassandra seeds
 if [ -z "$CASSANDRA_SEEDS" ]; then
@@ -30,7 +30,7 @@ sed -i -e "s/- seeds: \"127.0.0.1\"/- seeds: \"$CASSANDRA_SEEDS\"/" $CASSANDRA_C
 sed -i -e "s/^authenticator.*/authenticator: PasswordAuthenticator/" $CASSANDRA_CONFIG/cassandra.yaml
 
 # Most likely not needed
-echo "JVM_OPTS=\"\$JVM_OPTS -Djava.rmi.server.hostname=$IP\"" >> $CASSANDRA_CONFIG/cassandra-env.sh
+echo "JVM_OPTS=\"\$JVM_OPTS -Djava.rmi.server.hostname=${LISTEN_ADDRESS:-$(echo $IP)}\"" >> $CASSANDRA_CONFIG/cassandra-env.sh
 
 echo "Starting Cassandra on $IP..."
 
