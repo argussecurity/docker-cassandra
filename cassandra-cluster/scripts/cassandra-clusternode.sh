@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Get running container's IP
-IP=$(curl --connect-timeout 5 http://169.254.169.254/latest/meta-data/public-hostname)
+IP=$(curl --connect-timeout 5 http://169.254.169.254/latest/meta-data/local-ipv4)
 IP=${IP:-`hostname --all-ip-addresses | cut -f 1 -d ' '`}
 if [ $# == 1 ]; then SEEDS="$1,$IP"; 
 else SEEDS="$IP"; fi
