@@ -12,7 +12,7 @@ do
   dir=${DIRS[$i]}
   tag=${TAGS[$i]}
 
-  docker push $DOCKER_REGISTRY/$IMAGE_PREFIX/$IMAGE_NAME:$tag
+  docker push $IMAGE_PREFIX/$IMAGE_NAME:$tag
 done
 
 echo "Done"
