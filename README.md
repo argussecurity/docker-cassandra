@@ -1,3 +1,5 @@
+# Modified from spotify/cassandra
+
 Cassandra in Docker
 ===
 
@@ -16,18 +18,23 @@ Optimizations include:
 
 In the box
 ---
-* **spotify/cassandra**
+* **argussecurity/cassandra**
 
   This is probably the image you want, it runs a one-node Cassandra cluster.
   Built from the `cassandra` directory.
 
-* **spotify/cassandra:cluster**
+* **argussecurity/cassandra:cluster**
 
   Runs a Cassandra cluster. Expects `CASSANDRA_SEEDS` and `CASSANDRA_TOKEN` env variables to be set.
   If `CASSANDRA_SEEDS` is not set, node acts as its own seed. If `CASSANDRA_TOKEN` is not set, the
   container will not run. Built from the `cassandra-cluster` directory.
+  
+* **argussecurity/cassandra:cluster-prometheus**
 
-* **spotify/cassandra:base**
+  Same as **argussecurity/cassandra:cluster**, with an added javaagent to export metrics to [Prometheus](http://prometheus.io).
+  Config is taken from https://github.com/prometheus/jmx_exporter/blob/master/example_configs/cassandra.yml
+
+* **argussecurity/cassandra:base**
 
   The base image with an unconfigured Cassandra installation. You probably don't want to use this
   directly. Built from the `cassandra-base` directory.

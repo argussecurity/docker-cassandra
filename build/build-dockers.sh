@@ -4,9 +4,9 @@ set -e
 IMAGE_PREFIX=argussecurity
 IMAGE_NAME=cassandra
 BUILD_PROPERTIES_LOCATION=./build.properties
-NUMBER_OF_IMAGES=3
-declare -a DIRS=( "cassandra-base" "cassandra" "cassandra-cluster" )
-declare -a TAGS=( "base"           "latest"    "cluster"           )
+NUMBER_OF_IMAGES=4
+declare -a DIRS=( "cassandra-base" "cassandra" "cassandra-cluster" "cassandra-cluster-prometheus" )
+declare -a TAGS=( "base"           "latest"    "cluster"           "cluster-prometheus" )
 
 script_dir="$( cd "$( dirname "$0" )" && pwd )"
 cd $script_dir/..
