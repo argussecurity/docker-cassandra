@@ -21,7 +21,7 @@ In the box
 * **argussecurity/cassandra**
 
   This is probably the image you want, it runs a one-node Cassandra cluster.
-  Built from the `cassandra` directory.
+  Built from the `cassandra` directory0
 
 * **argussecurity/cassandra:cluster**
 
@@ -32,7 +32,9 @@ In the box
 * **argussecurity/cassandra:cluster-prometheus**
 
   Same as **argussecurity/cassandra:cluster**, with an added javaagent to export metrics to [Prometheus](http://prometheus.io).
-  Config is taken from https://github.com/prometheus/jmx_exporter/blob/master/example_configs/cassandra.yml
+  Config is taken from `https://github.com/prometheus/jmx_exporter/blob/master/example_configs/cassandra.yml`.
+  
+  (Default Prometheus' JMX Exporter port: `31500`. To override, set `PROMETHEUS_PORT` environment variable.)
 
 * **argussecurity/cassandra:base**
 
