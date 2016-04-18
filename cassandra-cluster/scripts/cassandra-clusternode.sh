@@ -2,6 +2,14 @@
 
 # Get running container's IP
 IP=${IP:-`hostname --all-ip-addresses | cut -f 1 -d ' '`}
+
+# HOST should be available, but just in case
+HOST=${HOST:-$IP}
+
+# Public IP (default: $IP)
+PUBLIC_IP=$(dig +short ${HOST} @8.8.8.8)
+PUBLIC_IP=${PUBLIC_IP:-$IP}
+
 if [ $# == 1 ]; then SEEDS="$1,$IP"; 
 else SEEDS="$IP"; fi
 
@@ -14,10 +22,12 @@ fi
 
 
 # Dunno why zeroes here
-sed -i -e "s/^rpc_address.*/rpc_address: $IP/" $CASSANDRA_CONFIG/cassandra.yaml
+sed -i -e "s/^rpc_address.*/rpc_address: 0.0.0.0/" $CASSANDRA_CONFIG/cassandra.yaml
 
 # Listen on IP:port of the container
 sed -i -e "s/^listen_address.*/listen_address: $IP/" $CASSANDRA_CONFIG/cassandra.yaml
+
+sed -i -e "s/# broadcast_address.*/broadcast_address: ${PUBLIC_IP}/" $CASSANDRA_CONFIG/cassandra.yaml
 
 # Configure Cassandra seeds
 if [ -z "$CASSANDRA_SEEDS" ]; then

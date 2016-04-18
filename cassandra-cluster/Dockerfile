@@ -10,6 +10,9 @@ FROM argussecurity/cassandra:base
 
 USER root
 
+RUN apt-get update && \
+    apt-get install -y dnsutils
+
 # Place cluster-node startup-config script
 ADD scripts/cassandra-clusternode.sh /usr/local/bin/cassandra-clusternode
 
