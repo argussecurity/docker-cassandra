@@ -1,3 +1,5 @@
+# MOVED TO: https://github.com/argussecurity/docker-cassandra-prometheus
+
 # Modified from spotify/cassandra
 
 Cassandra in Docker
